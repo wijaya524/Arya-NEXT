@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const ProductPage = () => {
     const { push } = useRouter()
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
     useEffect(() => {
         if (!isLogin) {
          push("/auth/login")   
