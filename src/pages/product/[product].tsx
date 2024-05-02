@@ -19,7 +19,7 @@ const DataProductPage = ({ product }: { product: ProductsType }) => {
       <h1>Product Page</h1>
 
       {/* Client Side */}
-      {/* <DetailProduct product={isLoading ? {} : data.data} /> */}
+       {/* <DetailProduct product={isLoading ? {} : data.data} />  */}
       {/* Server Side */}
       <DetailProduct product={product} />
     </div>
