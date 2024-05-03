@@ -1,77 +1,25 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import TextView from "./text";
+import PasswordView from "./Password";
+import BasicButtons from "./button";
+import  Link  from "next/link";
 
 const RegisterView = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
   return (
     <form
       action=""
       method="post"
-      className=" grid my-36 items-center justify-center align-center"
+      className=" flex w-full h-96 items-center justify-center align-center"
     >
-      <h1 className=" text-3xl font-bold">Register</h1>
-      <Box
-
-        sx={{
-          width: 400,
-          maxWidth: "100%",
-          py: 5,
-        }}
-      >
-        <TextField
-        inputProps={{ style: { color: "white" } }}
-        InputLabelProps={{ style: { color: "white" } }}
-          fullWidth
-          id="standard-multiline-static"
-          label="Multiline"
-          multiline
-         
-          variant="standard"
-        />
-
-        <FormControl fullWidth variant="standard">
-
-          <InputLabel
-            htmlFor="standard-adornment-password"
-            sx={{ color: "white" }}
-          >
-            Password
-          </InputLabel>
-          <Input
-            fullWidth
-            sx={{ color: "white" }}
-            id="standard-adornment-password"
-            type={showPassword ? "text" : "password"}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  sx={{ color: "white" }}
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-      </Box>
+      <div className=" mt-72 border-2 rounded-3xl bg-zinc-950 border-blue-700 p-9 shadow-lg shadow-blue-800">
+        <h1 className=" text-3xl font-bold">Register</h1>
+        <p className=" py-3">Welcome, please create your account</p>
+        <TextView label="Email" maxLength={30} />
+        <TextView label="Fullname" maxLength={30} />
+        <PasswordView />
+        <BasicButtons />
+        <p className=" mt-7 text-center ">Have an account?  <Link href="/login">Login</Link></p>
+      </div>
     </form>
   );
 };
