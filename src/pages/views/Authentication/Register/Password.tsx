@@ -8,7 +8,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 
-const PasswordView = () => {
+const PasswordView = (props : {name: string}) => {
+    const { name} = props
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -29,6 +30,7 @@ const PasswordView = () => {
             Password
           </InputLabel>
           <Input
+            name={name}
             fullWidth
             sx={{ color: "white" }}
             id="standard-adornment-password"
