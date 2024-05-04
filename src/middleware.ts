@@ -7,4 +7,4 @@ import withAuth from "./middlewares/withAuth";
     return res;
  }
 
- export default withAuth(MainMiddleware, ["/profile", "/product"]);
+ export default withAuth(MainMiddleware, ["/profile", "/admin"]);

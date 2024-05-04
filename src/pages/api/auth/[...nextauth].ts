@@ -1,3 +1,5 @@
+import { signIn } from "@/pages/lib/db/service";
+import { compare } from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import  CredentialsProvider  from "next-auth/providers/credentials";
@@ -13,23 +15,20 @@ export const authOptions: NextAuthOptions = {
         name: "credentials",
         credentials: {
             email: { label: "Email", type: "email" },
-            fullname: { label: "Fullname", type: "text" },
             password: { label: "Password", type: "password" }
         },
         async authorize (credentials: any) {
-        const {email, password, fullname} = credentials as {
+        const {email, password} = credentials as {
             email: string;
-            fullname: string;
             password: string;
         };
-        const user : any = {
-            id: "1",
-            password : password,
-            fullname: fullname,
-            email: email
-        }
+       const user : any = await signIn({email})
          if(user){
-            return user
+            const passwordConfirm = await compare(password, user.password)
+            if(passwordConfirm){
+                return user
+            }
+            return null
          }else {
             return null
          }     
@@ -40,6 +39,7 @@ export const authOptions: NextAuthOptions = {
        if (account?.provider  === "credentials") {
            token.email = user.email
            token.fullname = user.fullname
+           token.role = user.role
        }
        return token
        },
@@ -50,8 +50,14 @@ export const authOptions: NextAuthOptions = {
         if("fullname" in token){ 
             session.user.fullname = token.fullname
         }
+        if("role" in token){ 
+            session.user.role = token.role
+        }
             return session
         }
+   },
+   pages: {
+       signIn: "/auth/login"
    }
 }
        

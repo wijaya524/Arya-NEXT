@@ -2,7 +2,9 @@ import RegisterView from "@/pages/views/Authentication/Register";
 
 const Register = () => {
     return(
-        <RegisterView/>
+        <>
+          <RegisterView/>
+        </>
     )
 };
 export default Register;

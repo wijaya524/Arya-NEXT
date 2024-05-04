@@ -47,7 +47,7 @@ const RegisterView = () => {
         <TextView label="Fullname" maxLength={30} type="text" name="fullname"/>
         <PasswordView name="password"/>
         <BasicButtons >{isLoading ? 'Loading...' : 'Register'}</BasicButtons>
-        <p className=" mt-7 text-center ">Have an account?  <Link href="/login" className=" text-blue-500">Login</Link></p>
+        <p className=" mt-7 text-center ">Have an account?  <Link href="/auth/login" className=" text-blue-500">Login</Link></p>
       </div>
     </form>
   );
